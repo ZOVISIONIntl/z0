@@ -1,0 +1,13 @@
+{
+  "name": "ecclesia-complete",
+  "version": "1.0.0",
+  "description": "Ecclesia of Existence Complete Operational Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["ecclesia", "digital-sovereignty", "religious-organization"],
+  "author": "Alonzo Maurice Curry Jr.",
+  "license": "MIT"
+}

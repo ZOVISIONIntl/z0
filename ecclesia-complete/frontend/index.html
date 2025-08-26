@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecclesia of Existence - Digital Sovereignty</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        .nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo h1 { font-size: 1.8rem; font-weight: 700; }
+        .logo p { font-size: 0.9rem; opacity: 0.8; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        .nav-menu a:hover { opacity: 0.8; }
+        .cta-btn { background: #4CAF50; padding: 0.5rem 1rem; border-radius: 5px; font-weight: 600; }
+        
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 0; text-align: center; }
+        .hero-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+        .hero h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+        
+        .stats { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; }
+        .stat { text-align: center; }
+        .stat .number { display: block; font-size: 2.5rem; font-weight: 700; color: #4CAF50; }
+        .stat .label { font-size: 0.9rem; opacity: 0.8; }
+        
+        .actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 5px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+        .btn-primary { background: #4CAF50; color: white; }
+        .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+        .btn:hover { transform: translateY(-2px); }
+        
+        .section { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
+        .section h3 { font-size: 2rem; margin-bottom: 1rem; color: #1a1a2e; }
+        .section p { font-size: 1.1rem; margin-bottom: 2rem; color: #666; }
+        
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .feature { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .feature h4 { color: #1a1a2e; margin-bottom: 1rem; }
+        .feature button { background: #4CAF50; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin-top: 1rem; }
+        
+        .cleveland { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); padding: 2rem; border-radius: 10px; margin: 2rem 0; }
+        .cleveland h4 { margin-bottom: 1rem; }
+        .cleveland .metrics { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+        .cleveland .metrics span { background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+        
+        .financial { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin: 2rem 0; }
+        .progress-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .progress-bar { width: 100%; height: 20px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin: 1rem 0; }
+        .progress { height: 100%; background: linear-gradient(90deg, #4CAF50, #45a049); width: 0%; transition: width 0.3s ease; }
+        .donate-btn { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; border-radius: 5px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 1rem; }
+        
+        .etu-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 10px; }
+        
+        .join { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 4rem 0; text-align: center; }
+        .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 2rem auto 0; padding: 0 2rem; }
+        .tier { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); }
+        .tier.featured { background: rgba(76,175,80,0.2); border: 2px solid #4CAF50; transform: scale(1.05); }
+        .tier h4 { font-size: 1.5rem; margin-bottom: 1rem; color: #4CAF50; }
+        .tier ul { list-style: none; margin: 1.5rem 0; text-align: left; }
+        .tier li { padding: 0.5rem 0; position: relative; padding-left: 1.5rem; }
+        .tier li:before { content: "✓"; position: absolute; left: 0; color: #4CAF50; font-weight: bold; }
+        .tier button { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; border-radius: 5px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 1rem; }
+        
+        .footer { background: #1a1a2e; color: white; padding: 3rem 0 1rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 0 2rem; }
+        .footer-section h4 { color: #4CAF50; margin-bottom: 1rem; }
+        .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; }
+        .modal.show { display: flex; justify-content: center; align-items: center; }
+        .modal-content { background: white; border-radius: 10px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid #eee; }
+        .modal-body { padding: 1.5rem; }
+        .close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 1rem; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #4CAF50; }
+        .submit-btn { background: #4CAF50; color: white; border: none; padding: 1rem 2rem; border-radius: 5px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; gap: 1rem; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; }
+            .hero h2 { font-size: 2rem; }
+            .stats { flex-direction: column; gap: 1rem; }
+            .actions { flex-direction: column; }
+            .financial { grid-template-columns: 1fr; }
+            .tiers { grid-template-columns: 1fr; }
+            .tier.featured { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1>�� Ecclesia of Existence</h1>
+                <p>Digital Sovereignty • Sacred Community</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#sanctuary">Sanctuary</a></li>
+                <li><a href="#outreach">170 Outreach</a></li>
+                <li><a href="#truth">Truth Institute</a></li>
+                <li><a href="#financial">Financial</a></li>
+                <li><a href="#join" class="cta-btn">Join Covenant</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>The Only Truth is Existence</h2>
+                <p>A sacred community building digital sovereignty through discipline, existence, and constitutional governance.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="number" id="member-count">1</span>
+                        <span class="label">Covenant Members</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" id="q3-progress">$0</span>
+                        <span class="label">Q3 Goal: $250K</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" id="cleveland-cases">0</span>
+                        <span class="label">Cleveland Pilot Cases</span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="showModal('covenant')">Join the Covenant</button>
+                    <button class="btn btn-secondary" onclick="showModal('donate')">Support the Mission</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sanctuary" class="section">
+            <h3>🏛️ Ecclesia Sanctuary</h3>
+            <p>Digital sacred space for covenant community, spiritual formation, and governance.</p>
+            <div class="features">
+                <div class="feature">
+                    <h4>Covenant Membership</h4>
+                    <p>Join our growing community of existence-focused individuals</p>
+                    <button onclick="showModal('covenant')">Register</button>
+                </div>
+                <div class="feature">
+                    <h4>Discipline Tracking</h4>
+                    <p>Personal and community spiritual formation practices</p>
+                    <button onclick="alert('Discipline tracking available to covenant members')">Track Progress</button>
+                </div>
+                <div class="feature">
+                    <h4>Community Governance</h4>
+                    <p>Local Covenant Councils and democratic participation</p>
+                    <button onclick="alert('Governance participation available to covenant members')">Participate</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="outreach" class="section">
+            <h3>🏠 170 Outreach</h3>
+            <p>Charitable debt relief and community development, featuring our Cleveland pilot program.</p>
+            <div class="cleveland">
+                <h4>Cleveland Pilot Program</h4>
+                <p>Converting distressed mortgages into stable homeownership through bank partnerships</p>
+                <div class="metrics">
+                    <span>Target: Bank partnerships for mortgage conversion</span>
+                    <span>Goal: Stable homeownership for families</span>
+                    <span>Impact: Community economic development</span>
+                </div>
+                <button class="btn btn-primary" onclick="showModal('cleveland')" style="margin-right: 1rem;">Apply for Assistance</button>
+                <button class="btn btn-secondary" onclick="showModal('partner')">Partner With Us</button>
+            </div>
+        </section>
+
+        <section id="truth" class="section">
+            <h3>📚 Truth Institute</h3>
+            <p>Preserving suppressed knowledge and providing alternative education.</p>
+            <div class="features">
+                <div class="feature">
+                    <h4>Knowledge Archive</h4>
+                    <p>Suppressed and alternative knowledge preservation</p>
+                    <button onclick="alert('Knowledge archive available to members')">Access Archive</button>
+                </div>
+                <div class="feature">
+                    <h4>Educational Curricula</h4>
+                    <p>Existence-based learning and certification</p>
+                    <button onclick="alert('Educational programs available to members')">View Courses</button>
+                                </div>
+                <div class="feature">
+                    <h4>Research Projects</h4>
+                    <p>Community-driven investigation and documentation</p>
+                    <button onclick="alert('Research projects available to members')">Join Research</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="financial" class="section">
+            <h3>💰 Financial Arm</h3>
+            <p>Sacred treasury management and sovereign economic systems.</p>
+            <div class="financial">
+                <div class="progress-card">
+                    <h4>Q3 2025 Fundraising Goal</h4>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-fill"></div>
+                    </div>
+                    <p><span id="raised-amount">$0</span> raised of $250,000 goal</p>
+                    <button class="donate-btn" onclick="showModal('donate')">Donate (Tax-Deductible)</button>
+                </div>
+                <div class="etu-card">
+                    <h4>ETU System</h4>
+                    <p>Existence Transaction Units for community commerce</p>
+                    <button onclick="alert('ETU system available to covenant members')" style="background: rgba(255,255,255,0.2); border: 1px solid white; color: white; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="join" class="join">
+            <h3>Join the Ecclesia of Existence</h3>
+            <p>Become part of a community building digital sovereignty and sacred existence.</p>
+            <div class="tiers">
+                <div class="tier">
+                    <h4>Candidate Member</h4>
+                    <p>Begin your journey with the Ecclesia</p>
+                    <ul>
+                        <li>Access to community resources</li>
+                        <li>Educational program participation</li>
+                        <li>Covenant preparation guidance</li>
+                    </ul>
+                    <button onclick="showModal('candidate')">Apply</button>
+                </div>
+                <div class="tier featured">
+                    <h4>Covenant Member</h4>
+                    <p>Full membership in the sacred community</p>
+                    <ul>
+                        <li>Voting rights in governance</li>
+                        <li>Access to all platform features</li>
+                        <li>Financial services and ETU system</li>
+                        <li>Cleveland pilot eligibility</li>
+                    </ul>
+                    <button onclick="showModal('covenant')">Join Covenant</button>
+                </div>
+                <div class="tier">
+                    <h4>Ministry Leadership</h4>
+                    <p>Ordained leadership within the Ecclesia</p>
+                    <ul>
+                        <li>Leadership roles and responsibilities</li>
+                        <li>Advanced spiritual formation</li>
+                        <li>Community guidance authority</li>
+                    </ul>
+                    <button onclick="showModal('ministry')">Apply for Ministry</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Ecclesia of Existence</h4>
+                <p>Digital sovereignty for sacred community</p>
+                <p>Founded on the principle that existence is the only truth</p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal Status</h4>
+                <p>501(c)(3) and 508(c)(1)(A) eligible</p>
+                <p>First Amendment protected religious organization</p>
+                <p>Tax-deductible donations accepted</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@ecclesiaofexistence.org</p>
+                <p>Cleveland Pilot: cleveland@ecclesiaofexistence.org</p>
+                <p>Donations: giving@ecclesiaofexistence.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ecclesia of Existence. All rights reserved.</p>
+            <p>Constitutional AI OS powered • Digital sovereignty operational</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="covenant-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎯 Join the Ecclesia Covenant</h3>
+                <button class="close" onclick="hideModal('covenant')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Join our sacred community committed to existence, discipline, and digital sovereignty.</p>
+                <form onsubmit="submitCovenant(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Why do you want to join the Ecclesia of Existence?</label>
+                        <textarea name="motivation" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required>
+                            I commit to the principles of existence, discipline, and community service
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Covenant Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="donate-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>💰 Support the Mission</h3>
+                <button class="close" onclick="hideModal('donate')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your tax-deductible donation supports our Q3 goal of $250,000 for Cleveland pilot expansion.</p>
+                <form onsubmit="submitDonation(event)">
+                    <div class="form-group">
+                        <label>Donation Amount</label>
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                            <button type="button" onclick="setAmount(50)">$50</button>
+                            <button type="button" onclick="setAmount(100)">$100</button>
+                            <button type="button" onclick="setAmount(250)">$250</button>
+                            <button type="button" onclick="setAmount(500)">$500</button>
+                        </div>
+                        <input type="number" name="amount" id="amount" placeholder="Enter amount" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Donor Name</label>
+                        <input type="text" name="donor-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="donor-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <select name="designation">
+                            <option value="general">General Fund</option>
+                            <option value="cleveland">Cleveland Pilot</option>
+                            <option value="outreach">170 Outreach</option>
+                            <option value="truth-institute">Truth Institute</option>
+                        </select>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0; border-left: 4px solid #4CAF50;">
+                        <p><strong>Tax Information:</strong></p>
+                        <p>✓ 501(c)(3) and 508(c)(1)(A) eligible</p>
+                        <p>✓ Tax-deductible receipt provided</p>
+                        <p>✓ Secure payment processing</p>
+                    </div>
+                    <button type="submit" class="submit-btn">Donate Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="cleveland-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏠 Cleveland Pilot Application</h3>
+                <button class="close" onclick="hideModal('cleveland')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Apply for assistance through our Cleveland pilot program for distressed mortgage conversion.</p>
+                <form onsubmit="submitCleveland(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Property Address</label>
+                        <input type="text" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Mortgage Balance</label>
+                        <input type="number" name="mortgage" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Lender</label>
+                        <input type="text" name="lender" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Situation Type</label>
+                        <select name="situation" required>
+                            <option value="">Select Situation</option>
+                            <option value="foreclosure">Facing Foreclosure</option>
+                            <option value="underwater">Underwater Mortgage</option>
+                            <option value="hardship">Financial Hardship</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Information</label>
+                        <textarea name="info" rows="4" placeholder="Describe your situation"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let ecclesiaData = {
+            memberCount: 1,
+            q3Progress: 0,
+            q3Goal: 250000,
+            clevelandCases: 0
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            setupSmoothScrolling();
+        });
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('member-count').textContent = ecclesiaData.memberCount;
+            document.getElementById('q3-progress').textContent = `\$\${ecclesiaData.q3Progress.toLocaleString()}`;
+            document.getElementById('cleveland-cases').textContent = ecclesiaData.clevelandCases;
+            document.getElementById('raised-amount').textContent = `\$\${ecclesiaData.q3Progress.toLocaleString()}`;
+            
+            const progressPercent = (ecclesiaData.q3Progress / ecclesiaData.q3Goal) * 100;
+            document.getElementById('progress-fill').style.width = `\${progressPercent}%`;
+        }
+
+        // Modal functions
+        function showModal(modalType) {
+            const modal = document.getElementById(modalType + '-modal');
+            if (modal) {
+                modal.classList.add('show');
+            }
+        }
+
+        function hideModal(modalType) {
+            const modal = document.getElementById(modalType + '-modal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        // Form submissions
+        function submitCovenant(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate processing
+            alert('Covenant application submitted successfully! You will receive a response within 48 hours.');
+            ecclesiaData.memberCount++;
+            updateStats();
+            hideModal('covenant');
+            event.target.reset();
+        }
+
+        function submitDonation(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const amount = parseFloat(formData.get('amount'));
+            
+            if (!amount || amount < 1) {
+                alert('Please enter a valid donation amount.');
+                return;
+            }
+            
+            // Simulate processing
+            alert(`Thank you for your \$\${amount} donation! Your tax-deductible receipt will be sent to \${formData.get('donor-email')}.`);
+            ecclesiaData.q3Progress += amount;
+            updateStats();
+            hideModal('donate');
+            event.target.reset();
+        }
+
+        function submitCleveland(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            // Simulate processing
+            alert('Cleveland pilot application submitted! Our team will contact you within 5 business days.');
+            ecclesiaData.clevelandCases++;
+            updateStats();
+            hideModal('cleveland');
+            event.target.reset();
+        }
+
+        // Utility functions
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+        }
+
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Simulate real-time updates
+        setInterval(() => {
+            if (Math.random() < 0.05) {
+                if (Math.random() < 0.7) {
+                    ecclesiaData.memberCount++;
+                }
+                if (Math.random() < 0.3) {
+                    ecclesiaData.q3Progress += Math.floor(Math.random() * 200) + 50;
+                }
+                updateStats();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
